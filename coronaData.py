@@ -8,11 +8,13 @@ print("Enter the name of the country whose cases you want to look up or 'Q' if y
 country = input(">")
 
 while True: # can look up as many countries until user decides to stop
-    if country == "q" or country == "Q":
+    
+    if country == "q" or country == "Q": # user wants to quit
         print("Thank you for collecting data from this program!")
         print("Closing program in 5 seconds...")
         time.sleep(5)
         sys.exit()
+        
     today = date.today() # makes sure the data shows the date as well since the numbers are changing everyday
 
     # sorting out the input so we can use it in the url
