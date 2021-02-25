@@ -4,24 +4,23 @@ import requests
 from datetime import date
 import time
 
+
 print("Enter the name of the country whose cases you want to look up or 'Q' if you are done: ")
 country = input(">")
 
 while True: # can look up as many countries until user decides to stop
-    
-    if country == "q" or country == "Q": # user wants to quit
+    if country == "q" or country == "Q":
         print("Thank you for collecting data from this program!")
         print("Closing program in 5 seconds...")
         time.sleep(5)
         sys.exit()
-        
     today = date.today() # makes sure the data shows the date as well since the numbers are changing everyday
 
     # sorting out the input so we can use it in the url
     country = country.lower()
     if " " in country:
         country = country.replace(" ", "-") # countries with spaces in names have links with '-' in place of the space
-    if country == "usa": # for some reason the link for the USA has 'us' and not 'usa'
+    if country == "usa" or country == "united states": # for some reason the link for the USA has 'us' and not 'usa'
         country = "us"
 
     url = f"https://www.worldometers.info/coronavirus/country/{country}/"
@@ -51,7 +50,7 @@ while True: # can look up as many countries until user decides to stop
     with open(f"{today}CovidData-{country.upper()}.txt", 'w') as file:
         file.write(f"Total Cases: {data[0]}\n")
         file.write(f"Total Deaths: {data[1]}\n")
-        file.write(f"Total Recoveries: {data[2]}")
+        file.write(f"Total Recoveries: {data[2]}\n")
         if len(data) > 3:
             if len(data) == 5: # some countries have 0 active cases so we only run this for those countries that do :)
                 file.write(f"Active Cases: {data[3]}\n")
