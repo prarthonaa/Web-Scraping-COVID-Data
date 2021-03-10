@@ -18,10 +18,12 @@ while True: # can look up as many countries until user decides to stop
 
     # sorting out the input so we can use it in the url
     country = country.lower()
-    if " " in country:
-        country = country.replace(" ", "-") # countries with spaces in names have links with '-' in place of the space
+    
     if country == "usa" or country == "united states": # for some reason the link for the USA has 'us' and not 'usa'
         country = "us"
+    if " " in country:
+        country = country.replace(" ", "-") # countries with spaces in names have links with '-' in place of the space
+    
 
     url = f"https://www.worldometers.info/coronavirus/country/{country}/"
 
